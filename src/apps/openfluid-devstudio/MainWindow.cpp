@@ -58,6 +58,7 @@
 #include <openfluid/waresdev/WaresDevPackage.hpp>
 #include <openfluid/base/PreferencesManager.hpp>
 #include <openfluid/base/RunContextManager.hpp>
+#include <openfluid/utils/GitHelper.hpp>
 
 #include "DevStudioPreferencesManager.hpp"
 
@@ -395,14 +396,13 @@ void MainWindow::onPreferencesAsked()
 
 void MainWindow::onImportWareSourcesAsked()
 {
-
-  if (openfluid::waresdev::WaresDevPackage::checkSevenZProgram())
+  if (openfluid::waresdev::WaresDevPackage::checkSevenZProgram() || openfluid::utils::GitHelper::checkGitProgram())
   {
     openfluid::ui::waresdev::WaresSrcImportDialog Dialog(this);
     Dialog.exec();
   }
   else
-    QMessageBox::warning(this, "Import not available", "7zip programm is not installed.");
+    QMessageBox::warning(this, "Import not available", tr("neither 7zip nor git program is installed."));
 }
 
 
@@ -418,7 +418,7 @@ void MainWindow::onExportWareSourcesAsked()
     Dialog.exec();
   }
   else
-    QMessageBox::warning(this, "Export not available", "7zip programm is not installed.");
+    QMessageBox::warning(this, "Export not available", tr("7zip program is not installed."));
 }
 
 
