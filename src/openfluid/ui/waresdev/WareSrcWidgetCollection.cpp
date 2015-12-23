@@ -55,7 +55,8 @@
 #include <openfluid/ui/waresdev/WareExplorerDialog.hpp>
 #include <openfluid/ui/waresdev/NewWareDialog.hpp>
 #include <openfluid/ui/waresdev/FindReplaceDialog.hpp>
-#include <openfluid/ui/waresdev/WareSrcFileEditor.hpp>
+#include <openfluid/ui/waresdev/WareSrcFiletypeManager.hpp>
+#include <openfluid/ui/waresdev/WareFileEditor.hpp>
 
 
 namespace openfluid { namespace ui { namespace waresdev {
@@ -773,7 +774,7 @@ void WareSrcWidgetCollection::showFindReplaceDialog()
   QString SelectedText = "";
   if (WareSrcWidget* Ware = currentWareWidget())
   {
-    if (WareSrcFileEditor* Editor = Ware->currentEditor())
+    if (WareFileEditor* Editor = Ware->currentEditor())
       SelectedText = Editor->getSelectedText();
   }
 
@@ -791,7 +792,7 @@ void WareSrcWidgetCollection::onFindReplaceRequested(FindReplaceDialog::FindRepl
 {
   if (WareSrcWidget* Ware = currentWareWidget())
   {
-    if (WareSrcFileEditor* Editor = Ware->currentEditor())
+    if (WareFileEditor* Editor = Ware->currentEditor())
     {
       Editor->setFocus();
       QString Message;
